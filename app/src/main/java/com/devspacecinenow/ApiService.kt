@@ -1,10 +1,11 @@
 package com.devspacecinenow
 
+import com.devspacecinenow.data.MovieResponse
 import retrofit2.Call
 import retrofit2.http.GET
 
 interface ApiService {
 
     @GET("now_playing?language=en-US&page=1")
-    fun getNowPlayingMovies(): Call<List<Unit>>
+    fun getNowPlayingMovies(): Call<MovieResponse>
 }
