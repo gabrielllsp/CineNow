@@ -14,16 +14,13 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             CineNowTheme {
-                val apiService = RetrofitClient.retrofitInstance.create(ApiService::class.java)
-                apiService.getNowPlayingMovies()
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-
+                    CineNowApp()
                 }
             }
         }
     }
 }
-
