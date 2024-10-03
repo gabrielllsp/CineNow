@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -8,12 +10,24 @@ android {
     namespace = "com.devspacecinenow"
     compileSdk = 34
 
+    buildFeatures {
+        buildConfig = true
+    }
+
     defaultConfig {
         applicationId = "com.devspacecinenow"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
+
+        val localProperties = project.rootProject.file("local.properties")
+        val properties = Properties()
+            properties.load(localProperties.inputStream())
+
+        val apiKey = properties.getProperty("API_KEY")
+
+        buildConfigField("String", "API_KEY", apiKey)
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -39,6 +53,7 @@ android {
     }
     buildFeatures {
         compose = true
+
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"
